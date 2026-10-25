@@ -1,0 +1,5 @@
+src/routeTree.gen.ts
+dist
+node_modules
+public/media/out
+src/data/media-manifest.json

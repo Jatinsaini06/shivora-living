@@ -1,0 +1,386 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Shivora Living — light-luxury design system
+
+   Warm ivory ground, champagne accent, charcoal ink.
+   Art direction: editorial, spacious, quiet. Motion is slow and
+   eased; nothing bounces, nothing snaps.
+   --------------------------------------------------------------- */
+@theme {
+  /* Ground — five steps of warm white, used to separate bands
+     without ever introducing a hard edge. */
+  --color-ivory: #fcfaf6;
+  --color-ivory-deep: #f5efe4;
+  --color-shell: #ffffff;
+  --color-sand: #ece2d2;
+  --color-clay: #e0d3bf;
+
+  /* Accent — champagne gold, kept low-saturation so it reads as
+     metal leaf rather than yellow. */
+  --color-gold: #ab8552;
+  --color-gold-soft: #d8bd93;
+  --color-gold-deep: #86663c;
+  --color-gold-tint: #f7f0e4;
+
+  /* Ink */
+  --color-ink: #1f1d1a;
+  --color-ink-soft: #4a443b;
+  --color-muted: #8a8175;
+  --color-line: #e7ded0;
+  --color-line-soft: #f0e9dd;
+
+  /* Type */
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-script: "Parisienne", "Segoe Script", cursive;
+
+  /* Motion — one ease for everything, so the whole site moves with
+     a single hand. */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-veil: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --shell-max: 84rem;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    letter-spacing: 0.012em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-gold-soft);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+
+  /* Focus ring: visible, but in the brand's own metal. */
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Shell ------------------------------------------------- */
+  .shell {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Vertical rhythm. Sections breathe far more than a brochure
+     would; the whitespace is the luxury. */
+  .band {
+    padding-block: clamp(5.5rem, 11vw, 11rem);
+  }
+  .band-tight {
+    padding-block: clamp(4rem, 7vw, 7rem);
+  }
+  .band-t {
+    padding-top: clamp(5.5rem, 11vw, 11rem);
+  }
+  .band-b {
+    padding-bottom: clamp(5.5rem, 11vw, 11rem);
+  }
+
+  /* ---- Type -------------------------------------------------- */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 400;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    line-height: 1;
+  }
+
+  .display-xl {
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 9.5vw, 8.5rem);
+    line-height: 0.9;
+    letter-spacing: -0.028em;
+    font-weight: 300;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.2vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-weight: 300;
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+
+  /* Body copy inside editorial columns — slightly looser and capped
+     in measure so lines never run long. */
+  .prose-lux {
+    font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+    line-height: 1.85;
+    color: var(--color-ink-soft);
+    max-width: 34em;
+  }
+
+  /* Wide-tracked micro label used on numbers and captions. */
+  .micro {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    line-height: 1;
+  }
+
+  /* ---- Ornament ---------------------------------------------- */
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-gold-soft) 18%,
+      var(--color-gold) 50%,
+      var(--color-gold-soft) 82%,
+      transparent
+    );
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--color-line);
+  }
+
+  .glass-card {
+    background: color-mix(in srgb, #ffffff 90%, transparent);
+    backdrop-filter: blur(18px) saturate(1.12);
+    border: 1px solid color-mix(in srgb, var(--color-gold-soft) 30%, transparent);
+    box-shadow:
+      0 1px 1px rgba(31, 29, 26, 0.03),
+      0 8px 24px -14px rgba(31, 29, 26, 0.16),
+      0 32px 70px -34px rgba(31, 29, 26, 0.3);
+  }
+
+  /* Layered, very soft lift. Luxury shadows are wide and faint,
+     never tight and dark. */
+  .lift {
+    box-shadow:
+      0 1px 2px rgba(31, 29, 26, 0.03),
+      0 12px 28px -18px rgba(31, 29, 26, 0.2),
+      0 40px 80px -40px rgba(31, 29, 26, 0.28);
+  }
+}
+
+/* Grain overlay — stops large ivory fields banding on wide screens. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------
+   Scroll choreography
+
+   Driven by IntersectionObserver in <Reveal/>. Three flavours: a
+   fade-lift for text, a curtain wipe for images, and a per-line
+   mask for display headings.
+   --------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition:
+    opacity 1.1s var(--ease-lux),
+    transform 1.1s var(--ease-lux);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Image curtain: the picture is uncovered rather than faded, and drifts back
+   to scale 1 as it lands.
+
+   The clip lives on an inner wrapper, never on the observed element itself.
+   A clip-path on the observed node would zero its own intersection rect (so
+   the reveal never fires) and would establish a containing block that crops
+   any deliberately overhanging child. */
+.reveal-veil > .veil-inner {
+  clip-path: inset(0 0 100% 0);
+  transform: scale(1.06);
+  transition:
+    clip-path 1.4s var(--ease-veil),
+    transform 1.8s var(--ease-lux);
+  will-change: clip-path, transform;
+}
+.reveal-veil.is-in > .veil-inner {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+}
+
+/* Per-line heading mask. Each line sits in an overflow-hidden row
+   and rises into place. */
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+.line-mask > span {
+  display: block;
+  transform: translate3d(0, 108%, 0);
+  transition: transform 1.15s var(--ease-lux);
+  will-change: transform;
+}
+.is-in .line-mask > span {
+  transform: none;
+}
+.line-mask:nth-child(2) > span {
+  transition-delay: 90ms;
+}
+.line-mask:nth-child(3) > span {
+  transition-delay: 180ms;
+}
+
+/* Hairline that draws itself in from the left. */
+.rule-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.3s var(--ease-veil);
+}
+.is-in .rule-draw {
+  transform: scaleX(1);
+}
+
+/* ---------------------------------------------------------------
+   Interaction
+   --------------------------------------------------------------- */
+
+/* Horizontal snap rails */
+.rail {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: start;
+}
+
+.tilt-stage {
+  perspective: 1400px;
+}
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease-lux);
+}
+
+/* Underline that grows from the left on hover — used on nav and
+   inline links. */
+.link-rule {
+  position: relative;
+}
+.link-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-lux);
+}
+.link-rule:hover::after,
+.link-rule[data-active="true"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Slow ken-burns drift on a photograph inside a fixed frame. */
+.kenburns {
+  transition: transform 1.6s var(--ease-lux);
+}
+.group:hover .kenburns {
+  transform: scale(1.06);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
