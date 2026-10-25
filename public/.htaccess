@@ -1,0 +1,28 @@
+# Shivora Living — static hosting (Apache / cPanel)
+# Every route is prerendered to its own index.html, so no rewriting to a single
+# page is needed. This file only sets caching and the 404 document.
+
+Options -Indexes
+DirectorySlash On
+ErrorDocument 404 /404.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashed build assets never change under the same name.
+  <FilesMatch "\.(js|css|woff2)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|jpg|png|svg|avif)$">
+    ExpiresDefault "access plus 6 months"
+  </FilesMatch>
+  # HTML must revalidate so content edits go live immediately.
+  <FilesMatch "\.html$">
+    ExpiresDefault "access plus 0 seconds"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
