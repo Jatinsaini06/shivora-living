@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#fbf8f3"/>
-  <path d="M12 44c6-4 10-8 10-14S18 20 12 20" stroke="#b08d57" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <path d="M32 44c6-4 10-8 10-14s-4-10-10-10" stroke="#b08d57" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  <path d="M52 44c-4-3-6-7-6-12" stroke="#d4b483" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <rect width="64" height="64" rx="12" fill="#1f1d1a"/>
+  <rect x="3.5" y="3.5" width="57" height="57" rx="9" fill="none" stroke="#ab8552" stroke-opacity="0.55" stroke-width="1.2"/>
+  <text x="32" y="44" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="40" fill="#d8bd93">S</text>
+  <rect x="22" y="50" width="20" height="1.6" rx="0.8" fill="#ab8552"/>
 </svg>

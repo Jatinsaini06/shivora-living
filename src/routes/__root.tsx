@@ -30,7 +30,7 @@ const ORGANIZATION_SCHEMA = {
       "@id": `${SITE.url}/#business`,
       name: SITE.name,
       url: SITE.url,
-      logo: `${SITE.url}/favicon.svg`,
+      logo: `${SITE.url}/icon-512.png`,
       image: `${SITE.url}/media/og-image.jpg`,
       email: SITE.email,
       telephone: SITE.phone,
@@ -98,6 +98,9 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Parisienne&display=swap",
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      // PNG fallbacks: Google's search-result icon and iOS home screen.
+      { rel: "icon", href: "/favicon-48.png", type: "image/png", sizes: "48x48" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
     scripts: [
       {
