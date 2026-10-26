@@ -86,10 +86,14 @@ export function CollectionsRail() {
         <ul
           ref={rail}
           className="rail flex gap-7 overflow-x-auto pb-2"
-          // First card lines up with the page gutter; the last can scroll clear.
+          // First card lines up with the .shell content edge; the last can
+          // scroll clear. Padding % resolves against the container width, so
+          // unlike 100vw it never drifts by the scrollbar.
           style={{
-            paddingInline: "var(--gutter)",
-            scrollPaddingInline: "var(--gutter)",
+            paddingInline:
+              "max(var(--gutter), calc((100% - var(--shell-max)) / 2 + var(--gutter)))",
+            scrollPaddingInline:
+              "max(var(--gutter), calc((100% - var(--shell-max)) / 2 + var(--gutter)))",
           }}
         >
           {PRODUCTS.map((product, i) => (

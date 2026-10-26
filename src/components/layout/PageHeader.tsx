@@ -49,7 +49,7 @@ export function PageHeader({
       <div className="shell">
         {crumbs.length ? (
           <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="text-muted flex flex-wrap items-center gap-2 text-[0.6rem] tracking-[0.24em] uppercase">
+            <ol className="text-muted flex flex-wrap items-center gap-2 text-[0.68rem] tracking-[0.22em] uppercase">
               {crumbs.map((crumb, i) => (
                 <li key={crumb.label} className="flex items-center gap-2">
                   {i > 0 ? <span className="text-line">&mdash;</span> : null}

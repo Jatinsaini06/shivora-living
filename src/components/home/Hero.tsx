@@ -16,12 +16,16 @@ import { HERO_USPS, SITE } from "@/data/site";
 export function Hero() {
   return (
     <section
-      className="grain relative isolate overflow-hidden"
+      className="grain relative isolate overflow-hidden pt-20 md:pt-[7.5rem]"
       aria-labelledby="hero-title"
     >
-      <div className="relative grid min-h-[46rem] lg:min-h-[94vh] lg:grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)]">
+      {/* Desktop: the photograph is pinned to the right half while the type
+          lives in the standard .shell, so its left edge lines up exactly with
+          the logo and every section below (no 100vw maths, which drifts by the
+          scrollbar width). */}
+      <div className="relative flex flex-col lg:min-h-[calc(100svh-7.5rem)] lg:flex-row lg:items-center">
         {/* ---- Photograph ---- */}
-        <div className="relative order-1 min-h-[22rem] lg:order-2 lg:min-h-full">
+        <div className="relative min-h-[22rem] sm:min-h-[28rem] lg:absolute lg:inset-y-0 lg:right-0 lg:min-h-0 lg:w-[52%]">
           <Parallax speed={0.22} className="absolute inset-0">
             <Figure
               slot="hero-room"
@@ -45,32 +49,34 @@ export function Hero() {
         </div>
 
         {/* ---- Type ---- */}
-        <div className="relative z-10 order-2 flex flex-col justify-center py-14 lg:order-1 lg:py-0">
-          <div className="shell lg:ml-auto lg:mr-0 lg:max-w-none lg:pr-0 lg:pl-[max(var(--gutter),calc((100vw-var(--shell-max))/2+var(--gutter)))]">
-            <Reveal variant="bare" className="lg:-mr-24">
-              <div className="mb-7 flex items-center gap-4">
-                <span className="bg-gold-soft rule-draw h-px w-14 origin-left" />
-                <p className="eyebrow">{SITE.name}</p>
-              </div>
+        <div className="relative z-10 w-full py-14 lg:py-20">
+          <div className="shell">
+            <div className="lg:max-w-[54%]">
+              <Reveal variant="bare">
+                <div className="mb-7 flex items-center gap-4">
+                  <span className="bg-gold-soft rule-draw h-px w-14 origin-left" />
+                  <p className="eyebrow">{SITE.name}</p>
+                </div>
 
-              <MaskedHeading
-                as="h1"
-                id="hero-title"
-                lines={["Beyond", "Expectations"]}
-                accent={[1]}
-                className="display-xl"
-              />
-            </Reveal>
+                <MaskedHeading
+                  as="h1"
+                  id="hero-title"
+                  lines={["Beyond", "Expectations"]}
+                  accent={[1]}
+                  className="display-xl lg:text-[clamp(4.5rem,7.2vw,7.25rem)]"
+                />
+              </Reveal>
 
-            <Reveal delay={420} className="mt-9">
-              <p className="prose-lux max-w-md">{SITE.strapline} crafted for luxurious spaces.</p>
+              <Reveal delay={420} className="mt-9">
+                <p className="prose-lux max-w-md">{SITE.strapline} crafted for luxurious spaces.</p>
 
-              {/* Sits outside the measure so the two buttons stay on one line. */}
-              <div className="mt-10 flex flex-wrap gap-3">
-                <GoldLink to="/collections">Explore Collections</GoldLink>
-                <GhostLink to="/custom-solutions">Custom Solutions</GhostLink>
-              </div>
-            </Reveal>
+                {/* Sits outside the measure so the two buttons stay on one line. */}
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <GoldLink to="/collections">Explore Collections</GoldLink>
+                  <GhostLink to="/custom-solutions">Custom Solutions</GhostLink>
+                </div>
+              </Reveal>
+            </div>
           </div>
 
           {/* Soft ivory bloom behind the headline adds depth without a box. */}
@@ -132,7 +138,7 @@ function ScrollCue() {
   return (
     <div
       aria-hidden="true"
-      className={`absolute bottom-10 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-3 transition-opacity duration-700 lg:flex ${
+      className={`absolute bottom-10 left-[74%] z-20 hidden -translate-x-1/2 flex-col items-center gap-3 transition-opacity duration-700 lg:flex ${
         gone ? "opacity-0" : "opacity-100"
       }`}
     >

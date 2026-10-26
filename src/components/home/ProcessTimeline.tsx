@@ -59,13 +59,12 @@ export function ProcessTimeline() {
                       sizes="7rem"
                     />
 
-                    <h3 className="text-ink mt-6 text-[0.64rem] tracking-[0.24em] uppercase">
+                    {/* Titles only: the catalogue describes just one stage, and a
+                        lone paragraph under one disc unbalances the row. The full
+                        copy lives on /process. */}
+                    <h3 className="text-ink mt-6 text-[0.7rem] tracking-[0.2em] uppercase">
                       {stage.title}
                     </h3>
-
-                    {stage.body ? (
-                      <p className="text-muted mt-3 text-[0.76rem] leading-relaxed">{stage.body}</p>
-                    ) : null}
                   </Reveal>
                 </li>
               );

@@ -41,13 +41,13 @@ function CustomSolutionsPage() {
         crumbs={[{ label: "Home", to: "/" }, { label: "Custom Solutions" }]}
       />
 
-      <section className="band-b" aria-label="What we can customise">
+      <section className="band-b pt-[clamp(3.5rem,6vw,6rem)]" aria-label="What we can customise">
         <div className="shell">
           <ul className="border-line/70 grid border-t sm:grid-cols-2 lg:grid-cols-4">
             {CUSTOM_SOLUTIONS.map((item, i) => (
               <li
                 key={item.title}
-                className="border-line/70 group relative overflow-hidden border-b sm:[&:nth-child(2n)]:border-l lg:[&:nth-child(2n)]:border-l-0 lg:[&:not(:nth-child(4n+1))]:border-l"
+                className="border-line/70 group relative overflow-hidden border-b sm:max-lg:[&:nth-child(2n)]:border-l lg:[&:not(:nth-child(4n+1))]:border-l"
               >
                 <Reveal delay={(i % 4) * 80} className="h-full">
                   <article className="relative flex h-full flex-col gap-6 px-1 py-10 sm:px-8">
