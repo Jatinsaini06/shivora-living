@@ -32,7 +32,7 @@ export default defineConfig(async ({ command }) => {
         // /404.html for the host's ErrorDocument.
         { path: "/404" },
       ],
-      sitemap: { enabled: true, host: "https://www.shivoraliving.in" },
+      sitemap: { enabled: true, host: "https://shivoraliving.in" },
     }),
   ];
 

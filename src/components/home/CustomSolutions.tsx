@@ -15,7 +15,7 @@ const LAYERS = [
 export function CustomSolutions() {
   return (
     <section
-      className="bg-ivory-deep band relative isolate overflow-hidden"
+      className="bg-ivory-deep band-t relative isolate overflow-hidden pb-[clamp(4rem,7vw,7rem)]"
       aria-labelledby="custom-title"
     >
       <div className="shell">
@@ -52,9 +52,10 @@ export function CustomSolutions() {
         {/* ---- Capabilities ------------------------------------------------
             A centred hairline band rather than a grid: seven items never
             divide evenly into a column count, and a part-empty last row reads
-            as a mistake. Flowing them keeps every breakpoint clean. */}
-        <Reveal className="border-line/70 mt-24 border-y py-9">
-          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14">
+            as a mistake. Flowing them keeps small screens clean; on desktop
+            all seven sit on one justified line so none is left orphaned. */}
+        <Reveal className="border-line/70 mt-20 border-y py-9">
+          <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-14 xl:flex-nowrap xl:justify-between xl:gap-x-6">
             {CUSTOM_SOLUTIONS.map((item) => (
               <li key={item.title} className="group flex items-center gap-3">
                 <Icon

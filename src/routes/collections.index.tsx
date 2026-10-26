@@ -6,6 +6,7 @@ import { Reveal } from "@/components/primitives/motion";
 import { CtaBand } from "@/components/home/CtaBand";
 import { PRODUCTS } from "@/data/products";
 import { SITE } from "@/data/site";
+import { cn } from "@/lib/cn";
 
 export const Route = createFileRoute("/collections/")({
   head: () => ({
@@ -33,13 +34,24 @@ function CollectionsIndex() {
         crumbs={[{ label: "Home", to: "/" }, { label: "Collections" }]}
       />
 
-      <section className="band-b" aria-label="All collections">
+      <section className="band-b pt-[clamp(3.5rem,6vw,6rem)]" aria-label="All collections">
         <div className="shell">
           {/* Alternating offsets give the grid an editorial cadence instead of
               a catalogue's uniform rows. */}
           <ul className="grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
             {PRODUCTS.map((product, i) => (
-              <li key={product.slug} className={i % 3 === 1 ? "lg:mt-16" : undefined}>
+              <li
+                key={product.slug}
+                className={cn(
+                  i % 3 === 1 && "lg:mt-16",
+                  // A lone card on the last row sits in the centre column, not
+                  // stranded at the left edge.
+                  i === PRODUCTS.length - 1 && i % 3 === 0 && "lg:col-start-2",
+                  i === PRODUCTS.length - 1 &&
+                    i % 2 === 0 &&
+                    "sm:max-lg:col-span-2 sm:max-lg:mx-auto sm:max-lg:w-1/2",
+                )}
+              >
                 <Reveal delay={(i % 3) * 90}>
                   <Link
                     to="/collections/$slug"

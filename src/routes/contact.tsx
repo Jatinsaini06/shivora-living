@@ -51,7 +51,7 @@ function Contact() {
         crumbs={[{ label: "Home", to: "/" }, { label: "Contact" }]}
       />
 
-      <section className="band-b" aria-label="Contact details and enquiry">
+      <section className="band-b pt-[clamp(3.5rem,6vw,6rem)]" aria-label="Contact details and enquiry">
         <div className="shell grid gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-24">
           {/* ---- Channels ---- */}
           <Reveal>

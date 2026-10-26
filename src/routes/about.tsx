@@ -32,7 +32,7 @@ function About() {
         crumbs={[{ label: "Home", to: "/" }, { label: "About Us" }]}
       />
 
-      <section className="band-b" aria-label="Our story">
+      <section className="band-b pt-[clamp(3.5rem,6vw,6rem)]" aria-label="Our story">
         <div className="shell grid items-start gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-24">
           <Reveal>
             <div className="prose-lux space-y-7">
@@ -92,7 +92,7 @@ function About() {
             {WHY_CHOOSE_US.map((item, i) => (
               <li
                 key={item.title}
-                className="border-line/70 group relative overflow-hidden border-b sm:[&:nth-child(2n)]:border-l lg:[&:nth-child(2n)]:border-l-0 lg:[&:not(:nth-child(3n+1))]:border-l"
+                className="border-line/70 group relative overflow-hidden border-b sm:max-lg:[&:nth-child(2n)]:border-l lg:[&:not(:nth-child(3n+1))]:border-l"
               >
                 <Reveal delay={(i % 3) * 90} className="h-full">
                   <article className="relative flex h-full flex-col px-1 py-10 sm:px-9">

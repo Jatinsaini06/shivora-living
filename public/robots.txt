@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.shivoraliving.in/sitemap.xml
+Sitemap: https://shivoraliving.in/sitemap.xml

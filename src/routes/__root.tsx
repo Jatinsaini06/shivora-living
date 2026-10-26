@@ -1,4 +1,10 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+  useRouterState,
+} from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
@@ -11,23 +17,60 @@ import { NotFound } from "@/components/layout/NotFound";
 const DESCRIPTION =
   "Shivora Living crafts premium hand woven, hand tufted, jute, woolen and custom carpets for ultra-luxury hotels, commercial spaces and premium residential interiors. Based in Panipat, Haryana.";
 
-/** Organization schema so search engines get the manufacturer details directly. */
+/**
+ * Business + website schema so search engines get the manufacturer details
+ * directly. LocalBusiness (not bare Organization) is what makes the business
+ * eligible for local results such as "carpet manufacturer in Panipat".
+ */
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE.name,
-  url: SITE.url,
-  email: SITE.email,
-  telephone: SITE.phone,
-  slogan: SITE.tagline,
-  description: DESCRIPTION,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Panipat",
-    addressRegion: "Haryana",
-    addressCountry: "IN",
-  },
-  sameAs: [SITE.instagramUrl],
+  "@graph": [
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": `${SITE.url}/#business`,
+      name: SITE.name,
+      url: SITE.url,
+      logo: `${SITE.url}/favicon.svg`,
+      image: `${SITE.url}/media/og-image.jpg`,
+      email: SITE.email,
+      telephone: SITE.phone,
+      slogan: SITE.tagline,
+      description: DESCRIPTION,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Panipat",
+        addressRegion: "Haryana",
+        addressCountry: "IN",
+      },
+      areaServed: "IN",
+      knowsAbout: [
+        "Hand woven carpets",
+        "Hand tufted carpets",
+        "Jute rugs",
+        "Woolen carpets",
+        "Shaggy rugs",
+        "Hotel carpets",
+        "Custom carpets",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: SITE.phone,
+        email: SITE.email,
+        contactType: "sales",
+        areaServed: "IN",
+        availableLanguage: ["en", "hi"],
+      },
+      sameAs: [SITE.instagramUrl],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      publisher: { "@id": `${SITE.url}/#business` },
+      inLanguage: "en-IN",
+    },
+  ],
 };
 
 export const Route = createRootRoute({
@@ -92,11 +135,21 @@ function RootDocument({ children }: { children: ReactNode }) {
         </a>
         <Header />
         <ContactRail />
-        <main id="main">{children}</main>
+        <PageFrame>{children}</PageFrame>
         <Footer />
         <Scripts />
       </body>
     </html>
+  );
+}
+
+/** Re-keyed per route so every navigation replays the fade-in. */
+function PageFrame({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  return (
+    <main id="main" key={pathname} className="page-enter">
+      {children}
+    </main>
   );
 }
 

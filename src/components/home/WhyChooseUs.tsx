@@ -24,7 +24,7 @@ export function WhyChooseUs() {
           {WHY_CHOOSE_US.map((item, i) => (
             <li
               key={item.title}
-              className="border-line/70 group relative overflow-hidden border-b sm:[&:nth-child(2n)]:border-l lg:[&:nth-child(2n)]:border-l-0 lg:[&:not(:nth-child(3n+1))]:border-l"
+              className="border-line/70 group relative overflow-hidden border-b sm:max-lg:[&:nth-child(2n)]:border-l lg:[&:not(:nth-child(3n+1))]:border-l"
             >
               <Reveal delay={(i % 3) * 90} className="h-full">
                 <article className="relative flex h-full flex-col px-1 py-10 sm:px-9">

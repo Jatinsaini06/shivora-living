@@ -29,7 +29,7 @@ function Process() {
         crumbs={[{ label: "Home", to: "/" }, { label: "Process" }]}
       />
 
-      <section className="band-b" aria-label="Manufacturing stages">
+      <section className="band-b pt-[clamp(3.5rem,6vw,6rem)]" aria-label="Manufacturing stages">
         <div className="shell">
           <ol>
             {PROCESS_STAGES.map((stage, i) => (
